@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vEc-ca-mAz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vEc-ca-mAz">
                                 <rect key="frame" x="180" y="119" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="GW5-wR-UcQ"/>
@@ -279,6 +279,11 @@
                             <constraint firstItem="vEc-ca-mAz" firstAttribute="top" secondItem="tnC-7B-RfN" secondAttribute="bottom" constant="54" id="xUA-JZ-AyM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descLbl" destination="PTM-0S-95s" id="t49-S0-BBM"/>
+                        <outlet property="postImg" destination="vEc-ca-mAz" id="Soh-eH-l2q"/>
+                        <outlet property="titleLbl" destination="2gw-jl-gvD" id="Kgk-Gp-hp4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cog-o3-07F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

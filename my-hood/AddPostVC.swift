@@ -8,26 +8,32 @@
 
 import UIKit
 
-class AddPostVC: UIViewController {
+class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    //MARK: Property
+    var imagePicker = UIImagePickerController()
+   
+    //MARK: Outlet
+    @IBOutlet weak var postImg: UIImageView!
+    @IBOutlet weak var titleLbl: UITextField!
+    @IBOutlet weak var descLbl: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        imagePicker.delegate = self
+        
+        postImg.layer.cornerRadius =  postImg.frame.width / 2
     }
 
-
     
-    
-    
-    
-    
+    //MARK: Action
     @IBAction func addPicBtnPressed(sender: UIButton) {
         sender.setTitle("", forState: .Normal)
         
         //do other stuff
+        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func addPostBtnPressed(sender: UIButton) {
@@ -41,14 +47,15 @@ class AddPostVC: UIViewController {
     }
     
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+            self.postImg.image = image
+            picker.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
-
+    
+    
+    
+    
+    
+    
 }
