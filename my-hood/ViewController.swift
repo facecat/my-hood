@@ -57,6 +57,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return DataService.instance.posts.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 78.0
+    }
     
     
     
