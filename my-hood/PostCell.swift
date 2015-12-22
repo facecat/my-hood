@@ -16,7 +16,9 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        postImg.layer.cornerRadius = postImg.frame.size.width / 2
+        postImg.clipsToBounds = true
     }
 
     func configureCell(post: Post) {
@@ -24,5 +26,7 @@ class PostCell: UITableViewCell {
         self.DescLbl.text = post.postDescription
         //image
     }
+    
+    
     
 }

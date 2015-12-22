@@ -33,7 +33,6 @@ class Post: NSObject, NSCoding {
     
     //MARK: NSCoding Protocol
     override init() {
-        
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -50,5 +49,8 @@ class Post: NSObject, NSCoding {
         //imagePath ?
         
     }
+    
+    
+    
     
 }

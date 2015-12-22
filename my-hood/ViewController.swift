@@ -21,8 +21,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableview.delegate = self
         
         //fake data
-        let post1 = Post(title: "11", desc: "sad", path: "")
-        let post2 = Post(title: "2313", desc: "sadjio", path: "")
+        let post1 = Post(title: "wathoh sdawdadasd", desc: "sadasd w WDADASDAWDADASDAWDADSAD", path: "")
+        let post2 = Post(title: "huhw jiaw dia jao ", desc: "DWj jiw idjaidWDi jiwajDWD ", path: "")
         posts.append(post1)
         posts.append(post2)
         tableview.reloadData()
