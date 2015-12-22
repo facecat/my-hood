@@ -10,8 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var posts = [Post]()
-    
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
@@ -20,11 +18,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableview.dataSource = self
         tableview.delegate = self
         
-        //fake data
-        let post1 = Post(title: "wathoh sdawdadasd", desc: "sadasd w WDADASDAWDADASDAWDADSAD", path: "")
-        let post2 = Post(title: "huhw jiaw dia jao ", desc: "DWj jiw idjaidWDi jiwajDWD ", path: "")
-        posts.append(post1)
-        posts.append(post2)
+        DataService.instance.loadPosts()
+        tableview.reloadData()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTableViewContents:", name: "ntfNewPostAdded", object: nil)
+    }
+    
+    //MARK: Function
+    func refreshTableViewContents(notif: AnyObject) {
+        print("Notification recieved !")
+        
+        DataService.instance.loadPosts()
         tableview.reloadData()
     }
 
@@ -35,18 +39,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        //WARNING: Why DataService.instance.posts must be retrived in these methods ?
+        //Does singleton recomend that the singleton instance cannot be referenced ?
+        let post = DataService.instance.posts[indexPath.row]
         if let cell = tableview.dequeueReusableCellWithIdentifier("PostCell") as? PostCell {
-            cell.configureCell(posts[indexPath.row])
+            cell.configureCell(post)
             return cell
         } else {
             let cell = PostCell()
-            cell.configureCell(posts[indexPath.row])
+            cell.configureCell(post)
             return cell
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return DataService.instance.posts.count
     }
     
     

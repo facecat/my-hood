@@ -280,6 +280,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPicBtn" destination="xJE-iO-yhg" id="t49-mT-hJ8"/>
                         <outlet property="descLbl" destination="PTM-0S-95s" id="t49-S0-BBM"/>
                         <outlet property="postImg" destination="vEc-ca-mAz" id="Soh-eH-l2q"/>
                         <outlet property="titleLbl" destination="2gw-jl-gvD" id="Kgk-Gp-hp4"/>

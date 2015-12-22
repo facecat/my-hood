@@ -17,7 +17,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var postImg: UIImageView!
     @IBOutlet weak var titleLbl: UITextField!
     @IBOutlet weak var descLbl: UITextField!
-    
+    @IBOutlet weak var addPicBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,21 +25,26 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.delegate = self
         
         postImg.layer.cornerRadius =  postImg.frame.width / 2
+        postImg.clipsToBounds = true
     }
 
     
     //MARK: Action
     @IBAction func addPicBtnPressed(sender: UIButton) {
-        sender.setTitle("", forState: .Normal)
-        
-        //do other stuff
+        addPicBtn.setTitle("", forState: .Normal)
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func addPostBtnPressed(sender: UIButton) {
-        //do other things
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if let img = postImg.image , title = titleLbl.text, desc = descLbl.text {
+            
+            let imgPath = DataService.instance.saveImageAndCreatPath(img)
+            let addedPost = Post(title: title, desc: desc, path: imgPath)
+            DataService.instance.addPost(addedPost)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("ntfNewPostAdded", object: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func cancelBtnPressed(sender: UIButton) {
@@ -53,6 +58,12 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        if postImg.image == nil {
+            addPicBtn.setTitle("+ Add Pic", forState: .Normal)
+        }
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
     

@@ -37,17 +37,18 @@ class Post: NSObject, NSCoding {
     
     required convenience init?(coder aDecoder: NSCoder) {
         self.init()
+        
         self._title =  aDecoder.decodeObjectForKey("title") as? String
         self._postDescription = aDecoder.decodeObjectForKey("description") as? String
         //#warning imagePath ?
-        
+        self._imagePath = aDecoder.decodeObjectForKey("imagePath") as? String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(_title, forKey: "title")
         aCoder.encodeObject(_postDescription, forKey: "description")
         //imagePath ?
-        
+        aCoder.encodeObject(_imagePath, forKey: "imagePath")
     }
     
     
